@@ -7,14 +7,14 @@ function Media({ data }) {
   return (
     <Grid container>
       <Grid item container xs={12}>
-        {Array.from(new Array(data?.length)).map((_, index) => (
-          <Grid key={index} container item xs={12} sm={6} md={4}>
-            <Box sx={{ width: "100%", padding: 2 }}>
+        {Array.from(new Array(Math.floor(12))).map((_, index) => (
+          <Grid key={index} container item xs={12} sm={4} md={4}>
+            <Box sx={{ width: "100%", padding: 3 }}>
               <Skeleton
                 variant="rectangular"
-                sx={{ width: "100%", height: 500, borderRadius: 5 }}
+                sx={{ width: "100%", height: 500 }}
               />
-              <Box sx={{ pt: 1 }}>
+              <Box sx={{ pt: 3 }}>
                 <Skeleton />
                 <Skeleton width="60%" />
               </Box>
@@ -42,9 +42,6 @@ export default function Shimmer({ data }) {
   );
 }
 
-Shimmer.propTypes = {
-  data: PropTypes.object.isRequired,
-};
-Media.propTypes = {
-  data: PropTypes.object.isRequired,
-};
+// Shimmer.propTypes = {
+//   data: PropTypes.object.isRequired,
+// };

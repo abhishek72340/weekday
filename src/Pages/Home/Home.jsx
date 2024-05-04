@@ -10,7 +10,6 @@ const Home = () => {
   useEffect(() => {
     dispatch(fetchSampleJd());
   }, [dispatch]);
-  console.log(data);
   return (
     <>
       <Header />
@@ -18,7 +17,17 @@ const Home = () => {
         {loading ? (
           <Shimmer data={data} />
         ) : (
-          data?.map((item, index) => <JdCard item={item} key={index} />)
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gridGap: "1rem",
+              padding: "1rem",
+            }}
+          >
+            {data &&
+              data?.map((item) => <JdCard item={item} key={item?.jdUid} />)}
+          </div>
         )}
       </div>
     </>

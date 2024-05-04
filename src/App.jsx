@@ -1,11 +1,15 @@
+import { lazy, Suspense } from "react";
+import Shimmer from "./Components/Shimmer/Shimmer";
 import { Route, Routes } from "react-router-dom";
-import Home from "./Pages/Home/Home";
+const Home = lazy(() => import("./Pages/Home/Home"));
 const App = () => {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
+      <Suspense fallback={<Shimmer />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </Suspense>
     </>
   );
 };
