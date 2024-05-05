@@ -1,4 +1,4 @@
-export const experienceData = [
+export const experienceOptions = [
   { label: "1 Year", value: 1 },
   { label: "2 Year", value: 2 },
   { label: "3 Year", value: 3 },
@@ -9,20 +9,19 @@ export const experienceData = [
   { label: "8 Year", value: 8 },
   { label: "9 Year", value: 9 },
   { label: "10 Year", value: 10 },
-  { label: "20 Year", value: 20 },
 ];
-export const jobTypeData = [
+export const jobTypeOptions = [
   { label: "Remote", value: "Remote" },
   { label: "Hybrid", value: "Hybrid" },
   { label: "Onsite", value: "Onsite" },
 ];
-export const locationData = [
+export const locationOptions = [
   { label: "Delhi NCR", value: "Delhi NCR" },
   { label: "Mumbai", value: "Mumbai" },
   { label: "Chennai", value: "Chennai" },
   { label: "Bangalore", value: "Bangalore" },
 ];
-export const techStackData = [
+export const techStackOptions = [
   { label: "Html", value: "Html" },
   { label: "Css", value: "Css" },
   { label: "JavaScript", value: "JavaScript" },
@@ -37,7 +36,7 @@ export const techStackData = [
   { label: "Tailwind CSS", value: "Tailwind CSS" },
 ];
 
-export const salaryData = [
+export const salaryOptions = [
   { label: "1L", value: 1 },
   { label: "2L", value: 2 },
   { label: "3L", value: 3 },
@@ -49,7 +48,7 @@ export const salaryData = [
   { label: "9L", value: 9 },
   { label: "10L", value: 10 },
 ];
-export const rolesData = [
+export const rolesOptions = [
   { label: "Backend", value: "Backend" },
   { label: "Frontend", value: "Frontend" },
   { label: "Fullstack", value: "Fullstack" },

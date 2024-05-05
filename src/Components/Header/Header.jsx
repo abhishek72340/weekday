@@ -1,22 +1,17 @@
-import { Grid, TextField } from "@mui/material";
+// import { useState } from "react";
+import { Grid, TextField, Tooltip } from "@mui/material";
+import useHeader from "./../../Hooks/useHeader";
+import { useSelector } from "react-redux";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
-import { useDispatch, useSelector } from "react-redux";
 import {
-  setExperiencedFilter,
-  setCompanyNameFilter,
-  setJobLocationFilter,
-  setJobRoleFilter,
-  setSalaryFilter,
-} from "../../Redux/Slices/fetchSampleJd";
-import {
-  experienceData,
-  rolesData,
-  locationData,
-  techStackData,
-  salaryData,
-  jobTypeData,
-} from "../../Data/FilterData.js";
+  experienceOptions,
+  rolesOptions,
+  locationOptions,
+  techStackOptions,
+  salaryOptions,
+  jobTypeOptions,
+} from "../../Data/FilterOptions.js";
 
 const animatedComponents = makeAnimated();
 
@@ -28,26 +23,22 @@ const placeholderStyle = {
 };
 
 export default function SelectLabels() {
-  const dispatch = useDispatch();
-  const { experiencedFilter, jobLocationFilter, jobRoleFilter, salaryFilter } =
-    useSelector((state) => state.sampleJd);
-
-  const handleExperiencedChange = (selectedOption) => {
-    dispatch(setExperiencedFilter(selectedOption));
-  };
-
-  const handleCompanyNameChange = (e) => {
-    dispatch(setCompanyNameFilter(e.target.value));
-  };
-  const handleJobLocationChange = (selectedOption) => {
-    dispatch(setJobLocationFilter(selectedOption));
-  };
-  const handleJobRoleChange = (selectedOption) => {
-    dispatch(setJobRoleFilter(selectedOption));
-  };
-  const handleSalaryChange = (selectedOption) => {
-    dispatch(setSalaryFilter(selectedOption));
-  };
+  const {
+    handleExperiencedChange,
+    handleCompanyNameChange,
+    handleJobLocationChange,
+    handleJobRoleChange,
+    handleJobTypeChange,
+  } = useHeader();
+  const {
+    experiencedFilter,
+    jobLocationFilter,
+    jobRoleFilter,
+    minSalaryFilter,
+    jobTypeFilter,
+    handleSalaryChange,
+    companyNameFilter,
+  } = useSelector((state) => state.sampleJd);
 
   return (
     <>
@@ -66,9 +57,10 @@ export default function SelectLabels() {
           components={animatedComponents}
           onChange={handleExperiencedChange}
           value={experiencedFilter}
-          options={experienceData}
+          options={experienceOptions}
           placeholder="Minimum Experience"
           styles={placeholderStyle}
+          isClearable
         />
 
         <TextField
@@ -79,13 +71,14 @@ export default function SelectLabels() {
           InputProps={{
             style: { fontSize: "14px" },
           }}
+          value={companyNameFilter}
           onChange={handleCompanyNameChange}
         />
         <Select
           closeMenuOnSelect={false}
           components={animatedComponents}
           isMulti
-          options={locationData}
+          options={locationOptions}
           placeholder="Job Location"
           styles={placeholderStyle}
           value={jobLocationFilter}
@@ -94,24 +87,31 @@ export default function SelectLabels() {
         <Select
           closeMenuOnSelect={false}
           components={animatedComponents}
+          default
           isMulti
-          options={jobTypeData}
+          options={jobTypeOptions}
           placeholder="Job Type"
           styles={placeholderStyle}
+          value={jobTypeFilter}
+          onChange={handleJobTypeChange}
         />
+        <Tooltip title="This value is not available in API" placement="top">
+          {" "}
+          <Select
+            closeMenuOnSelect={false}
+            components={animatedComponents}
+            isMulti
+            options={techStackOptions}
+            placeholder="Tech Stack"
+            styles={placeholderStyle}
+            isDisabled={true}
+          />
+        </Tooltip>
         <Select
           closeMenuOnSelect={false}
           components={animatedComponents}
           isMulti
-          options={techStackData}
-          placeholder="Tech Stack"
-          styles={placeholderStyle}
-        />
-        <Select
-          closeMenuOnSelect={false}
-          components={animatedComponents}
-          isMulti
-          options={rolesData}
+          options={rolesOptions}
           placeholder="Roles"
           styles={placeholderStyle}
           value={jobRoleFilter}
@@ -120,11 +120,12 @@ export default function SelectLabels() {
         <Select
           closeMenuOnSelect={false}
           components={animatedComponents}
-          options={salaryData}
+          value={minSalaryFilter}
+          onChange={handleSalaryChange}
+          options={salaryOptions}
           placeholder="Minimum Base Pay Salary"
           styles={placeholderStyle}
-          value={salaryFilter}
-          onChange={handleSalaryChange}
+          isClearable
         />
       </Grid>
     </>

@@ -83,8 +83,9 @@ export default function JdCard({ item, key }) {
             margin: "5px 0 13px 0",
           }}
         >
-          Estimated Salary: ₹{item?.minJdSalary || "NA"} -
-          {item?.maxJdSalary || "N/A"} LPA{" "}
+          Estimated Salary: ₹
+          {item?.minJdSalary ? <span>{item?.minJdSalary}-</span> : null}
+          {item?.maxJdSalary || null} LPA{" "}
           <Tooltip title="Offered salary range" placement="top">
             ✅
           </Tooltip>
@@ -142,7 +143,7 @@ export default function JdCard({ item, key }) {
               },
             }}
           >
-            Easy Apply
+            ⚡ Easy Apply
           </Button>
           <Button
             sx={{
@@ -159,7 +160,7 @@ export default function JdCard({ item, key }) {
               },
             }}
           >
-            Ask for referral
+            🙎🏻‍♂️ Ask for referral
           </Button>
         </Stack>
       </Box>
