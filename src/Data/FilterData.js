@@ -9,6 +9,7 @@ export const experienceData = [
   { label: "8 Year", value: 8 },
   { label: "9 Year", value: 9 },
   { label: "10 Year", value: 10 },
+  { label: "20 Year", value: 20 },
 ];
 export const jobTypeData = [
   { label: "Remote", value: "Remote" },
@@ -37,16 +38,16 @@ export const techStackData = [
 ];
 
 export const salaryData = [
-  { label: "1L", value: "1L" },
-  { label: "2L", value: "2L" },
-  { label: "3L", value: "3L" },
-  { label: "4L", value: "4L" },
-  { label: "5L", value: "5L" },
-  { label: "6L", value: "6L" },
-  { label: "7L", value: "7L" },
-  { label: "8L", value: "8L" },
-  { label: "9L", value: "9L" },
-  { label: "10L", value: "10L" },
+  { label: "1L", value: 1 },
+  { label: "2L", value: 2 },
+  { label: "3L", value: 3 },
+  { label: "4L", value: 4 },
+  { label: "5L", value: 5 },
+  { label: "6L", value: 6 },
+  { label: "7L", value: 7 },
+  { label: "8L", value: 8 },
+  { label: "9L", value: 9 },
+  { label: "10L", value: 10 },
 ];
 export const rolesData = [
   { label: "Backend", value: "Backend" },

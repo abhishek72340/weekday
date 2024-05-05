@@ -41,7 +41,7 @@ export default function JdCard({ item, key }) {
           color="text.secondary"
           gutterBottom
         >
-          ⏳Posted 10 days ago
+          ⏳Posted {item.minExp + 1} days ago
         </Typography>
 
         <Stack
@@ -122,7 +122,8 @@ export default function JdCard({ item, key }) {
             fontFamily: " __LexendFont_7838d2, __LexendFont_Fallback_7838d2",
           }}
         >
-          {item?.minExp || "N/A"} Years
+          {item?.minExp || 0}
+          {-item?.maxExp || null} Years
         </Typography>
 
         <Stack gap={2} mt={2}>

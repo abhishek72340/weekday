@@ -41,10 +41,26 @@ const sampleJdSlice = createSlice({
     error: null,
     page: 1,
     experiencedFilter: null,
+    companyNameFilter: null,
+    jobLocationFilter: null,
+    jobRoleFilter: null,
+    salaryFilter: null,
   },
   reducers: {
     setExperiencedFilter: (state, action) => {
       state.experiencedFilter = action.payload;
+    },
+    setCompanyNameFilter: (state, action) => {
+      state.companyNameFilter = action.payload;
+    },
+    setJobLocationFilter: (state, action) => {
+      state.jobLocationFilter = action.payload;
+    },
+    setJobRoleFilter: (state, action) => {
+      state.jobRoleFilter = action.payload;
+    },
+    setSalaryFilter: (state, action) => {
+      state.salaryFilter = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -55,7 +71,8 @@ const sampleJdSlice = createSlice({
       })
       .addCase(fetchSampleJd.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = [...state.data, ...action.payload];
+        state.data =
+          action.payload.length > 0 ? action.payload : [...state.data];
         state.error = null;
         state.page += 1;
       })
@@ -65,5 +82,11 @@ const sampleJdSlice = createSlice({
       });
   },
 });
-export const { setExperiencedFilter } = sampleJdSlice.actions;
+export const {
+  setExperiencedFilter,
+  setCompanyNameFilter,
+  setJobLocationFilter,
+  setJobRoleFilter,
+  setSalaryFilter,
+} = sampleJdSlice.actions;
 export default sampleJdSlice;
