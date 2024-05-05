@@ -9,10 +9,14 @@ function Media({ data }) {
       <Grid item container xs={12}>
         {Array.from(new Array(Math.floor(12))).map((_, index) => (
           <Grid key={index} container item xs={12} sm={4} md={4}>
-            <Box sx={{ width: "100%", padding: 3 }}>
+            <Box sx={{ width: "100%", padding: 3, borderRadius: "25px" }}>
               <Skeleton
                 variant="rectangular"
-                sx={{ width: "100%", height: 500 }}
+                sx={{
+                  width: "100%",
+                  height: 500,
+                  borderRadius: "25px",
+                }}
               />
               <Box sx={{ pt: 3 }}>
                 <Skeleton />

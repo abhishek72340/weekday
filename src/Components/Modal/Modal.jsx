@@ -28,6 +28,7 @@ export default function BasicModal({ item }) {
         sx={{
           textTransform: "none",
           color: "#4943da",
+          fontSize: "1rem",
           fontFamily: " __LexendFont_7838d2, __LexendFont_Fallback_7838d2",
           "&:hover": {
             background: "none",

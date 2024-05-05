@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchSampleJd = createAsyncThunk(
   "sampleJd/fetchSampleJd",
-  async () => {
+  async (page) => {
     try {
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
       const body = JSON.stringify({
         limit: 10,
-        offset: 0,
+        offset: (page - 1) * 10,
       });
 
       const requestOptions = {
@@ -37,8 +37,9 @@ const sampleJdSlice = createSlice({
   name: "sampleJd",
   initialState: {
     loading: false,
-    data: [], // Initialize with an empty array
+    data: [],
     error: null,
+    page: 1,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -49,8 +50,9 @@ const sampleJdSlice = createSlice({
       })
       .addCase(fetchSampleJd.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload; // Update the data in the state
+        state.data = [...state.data, ...action.payload];
         state.error = null;
+        state.page += 1;
       })
       .addCase(fetchSampleJd.rejected, (state, action) => {
         state.loading = false;
@@ -58,5 +60,4 @@ const sampleJdSlice = createSlice({
       });
   },
 });
-
 export default sampleJdSlice;
