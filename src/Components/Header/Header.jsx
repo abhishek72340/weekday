@@ -40,7 +40,15 @@ export default function SelectLabels() {
 
   return (
     <>
-      <Grid container sx={{ display: "flex", alignItems: "center" }}>
+      <Grid
+        container
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          padding: 3,
+          gap: 2,
+        }}
+      >
         <FormControl sx={{ m: 1, maxWidth: "100%" }}>
           <Select
             value={selectedJobType}
