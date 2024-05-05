@@ -8,7 +8,9 @@ import { InfiniteScrollUtils } from "../../Utils/InfiniteScrollUtils";
 import { Grid } from "@mui/material";
 const Home = () => {
   const dispatch = useDispatch();
-  const { loading, data, page } = useSelector((state) => state.sampleJd);
+  const { loading, data, page, experiencedFilter } = useSelector(
+    (state) => state.sampleJd
+  );
   const bottomRef = useRef();
   const handleScroll = InfiniteScrollUtils(
     bottomRef,
@@ -17,6 +19,10 @@ const Home = () => {
     page,
     fetchSampleJd
   );
+  const filteredData = experiencedFilter
+    ? data.filter((item) => item.minExp === experiencedFilter)
+    : data;
+  console.log("filteredData", filteredData);
 
   useEffect(() => {
     dispatch(fetchSampleJd());
@@ -34,8 +40,9 @@ const Home = () => {
         <Shimmer data={data} />
       ) : (
         <Grid container spacing={3} justifyContent="center" alignItems="center">
-          {data &&
-            data?.map((item) => <JdCard item={item} key={item?.jdUid} />)}
+          {filteredData?.map((item) => (
+            <JdCard item={item} key={item?.jdUid} />
+          ))}
           <div ref={bottomRef} />
         </Grid>
       )}

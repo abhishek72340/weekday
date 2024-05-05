@@ -19,7 +19,7 @@ function Media() {
               />
               <Box sx={{ pt: 3 }}>
                 <Skeleton />
-                <Skeleton width="60%" />
+                <Skeleton width="50%" />
               </Box>
             </Box>
           </Grid>

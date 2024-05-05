@@ -10,8 +10,11 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 550,
+  maxWidth: "100%",
+  // minWidth: "60%",
+  maxHeight: "50%",
   bgcolor: "background.paper",
+  overflow: "auto",
   boxShadow: 24,
   p: 4,
 };

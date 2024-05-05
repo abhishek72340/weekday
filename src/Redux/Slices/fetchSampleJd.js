@@ -40,8 +40,13 @@ const sampleJdSlice = createSlice({
     data: [],
     error: null,
     page: 1,
+    experiencedFilter: null,
   },
-  reducers: {},
+  reducers: {
+    setExperiencedFilter: (state, action) => {
+      state.experiencedFilter = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchSampleJd.pending, (state) => {
@@ -60,4 +65,5 @@ const sampleJdSlice = createSlice({
       });
   },
 });
+export const { setExperiencedFilter } = sampleJdSlice.actions;
 export default sampleJdSlice;

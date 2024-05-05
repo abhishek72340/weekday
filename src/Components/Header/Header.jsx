@@ -1,153 +1,98 @@
-import * as React from "react";
+import { Grid, TextField } from "@mui/material";
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
+import { useDispatch, useSelector } from "react-redux";
+import { setExperiencedFilter } from "../../Redux/Slices/fetchSampleJd";
 import {
   experienceData,
   rolesData,
   locationData,
-  jobTypeData,
+  techStackData,
   salaryData,
-} from "../../Data/FilterData";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import { TextField, Grid } from "@mui/material";
+  jobTypeData,
+} from "../../Data/FilterData.js";
+
+const animatedComponents = makeAnimated();
+
+const placeholderStyle = {
+  placeholder: (provided) => ({
+    ...provided,
+    fontSize: "14px",
+  }),
+};
 
 export default function SelectLabels() {
-  const [selectedLocation, setSelectedLocation] = React.useState([]);
-  const [selectedRole, setSelectedRole] = React.useState([]);
-  const [selectedExperience, setSelectedExperience] = React.useState([]);
-  const [selectedJobType, setSelectedJobType] = React.useState([]);
-  const [selectedSalary, setSelectedSalary] = React.useState([]);
-
-  const handleLocationChange = (event) => {
-    setSelectedLocation(event.target.value);
+  const dispatch = useDispatch();
+  const { experiencedFilter } = useSelector((state) => state.sampleJd);
+  console.log("experiencedFilter", experiencedFilter);
+  const handleExperiencedChange = (selectedOption) => {
+    dispatch(setExperiencedFilter(selectedOption));
   };
-
-  const handleRoleChange = (event) => {
-    setSelectedRole(event.target.value);
-  };
-
-  const handleExperienceChange = (event) => {
-    setSelectedExperience(event.target.value);
-  };
-
-  const handleJobTypeChange = (event) => {
-    setSelectedJobType(event.target.value);
-  };
-
-  const handleSalaryChange = (event) => {
-    setSelectedSalary(event.target.value);
-  };
-
   return (
     <>
       <Grid
         container
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          padding: 3,
-          gap: 2,
-        }}
+        sx={{ display: "flex", alignItems: "center", padding: 3, gap: 1 }}
       >
-        <FormControl sx={{ m: 1, maxWidth: "100%" }}>
-          <Select
-            value={selectedJobType}
-            onChange={handleJobTypeChange}
-            displayEmpty
-            inputProps={{ "aria-label": "Without label" }}
-            size="small"
-            multiple
-          >
-            {jobTypeData?.map((item, index) => (
-              <MenuItem key={index} value={item}>
-                {item}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <FormControl sx={{ m: 1, maxWidth: "100%" }}>
-          <Select
-            value={selectedLocation}
-            onChange={handleLocationChange}
-            displayEmpty
-            inputProps={{ "aria-label": "Without label" }}
-            size="small"
-            multiple
-          >
-            {locationData?.map((item, index) => (
-              <MenuItem key={index} value={item}>
-                {item}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <FormControl sx={{ m: 1, maxWidth: "100%" }}>
-          <Select
-            value={selectedRole}
-            onChange={handleRoleChange}
-            displayEmpty
-            inputProps={{ "aria-Label": "Without label" }}
-            size="small"
-            multiple
-          >
-            {rolesData?.map((item, index) => (
-              <MenuItem key={index} value={item}>
-                {item}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <FormControl sx={{ m: 1, maxWidth: "100%" }}>
-          <Select
-            value={selectedExperience}
-            onChange={handleExperienceChange}
-            displayEmpty
-            inputProps={{ "aria-label": "Without label" }}
-            size="small"
-            multiple
-          >
-            {experienceData?.map((item, index) => (
-              <MenuItem key={index} value={item}>
-                {item}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        {/* Add similar Select components for other filters */}
-
-        <TextField
-          type="text"
-          placeholder="company name"
-          sx={{ maxWidth: "100%" }}
-          size="small"
+        <Select
+          closeMenuOnSelect={false}
+          components={animatedComponents}
+          onChange={handleExperiencedChange}
+          value={experiencedFilter}
+          options={experienceData}
+          placeholder="Minimum Experience"
+          styles={placeholderStyle}
         />
 
         <TextField
           type="text"
-          placeholder="tech stack"
-          sx={{ maxWidth: "100%" }}
+          placeholder="Search Company Name"
           size="small"
+          sx={{ maxWidth: "100%" }}
+          InputProps={{
+            style: { fontSize: "14px" },
+          }}
         />
-
-        <FormControl sx={{ m: 1, maxWidth: "100%" }}>
-          <Select
-            value={selectedSalary}
-            onChange={handleSalaryChange}
-            displayEmpty
-            inputProps={{ "aria-label": "Without label" }}
-            size="small"
-            multiple
-          >
-            {salaryData?.map((item, index) => (
-              <MenuItem key={index} value={item}>
-                {item}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+        <Select
+          closeMenuOnSelect={false}
+          components={animatedComponents}
+          isMulti
+          options={locationData}
+          placeholder="Job Location"
+          styles={placeholderStyle}
+        />
+        <Select
+          closeMenuOnSelect={false}
+          components={animatedComponents}
+          isMulti
+          options={jobTypeData}
+          placeholder="Job Type"
+          styles={placeholderStyle}
+        />
+        <Select
+          closeMenuOnSelect={false}
+          components={animatedComponents}
+          isMulti
+          options={techStackData}
+          placeholder="Tech Stack"
+          styles={placeholderStyle}
+        />
+        <Select
+          closeMenuOnSelect={false}
+          components={animatedComponents}
+          isMulti
+          options={rolesData}
+          placeholder="Roles"
+          styles={placeholderStyle}
+        />
+        <Select
+          closeMenuOnSelect={false}
+          components={animatedComponents}
+          isMulti
+          options={salaryData}
+          placeholder="Minimum Base Pay Salary"
+          styles={placeholderStyle}
+        />
       </Grid>
     </>
   );

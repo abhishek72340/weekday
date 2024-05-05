@@ -115,7 +115,7 @@ export default function JdCard({ item, key }) {
           mt={3}
           sx={{ letterSpacing: "1px" }}
         >
-          Minimum Experience:
+          Minimum Experience
         </Typography>
         <Typography
           sx={{
