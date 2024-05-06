@@ -13,7 +13,7 @@ function Media() {
                 variant="rectangular"
                 sx={{
                   width: "100%",
-                  height: 500,
+                  height: 460,
                   borderRadius: "25px",
                 }}
               />

@@ -9,7 +9,18 @@ import { InfiniteScrollUtils } from "../../Utils/InfiniteScrollUtils";
 import { Grid, Typography, Stack } from "@mui/material";
 const Home = () => {
   const dispatch = useDispatch();
-  const { loading, data, page, error } = useSelector((state) => state.sampleJd);
+  const {
+    loading,
+    data,
+    page,
+    error,
+    experiencedFilter,
+    companyNameFilter,
+    jobLocationFilter,
+    jobRoleFilter,
+    jobTypeFilter,
+    minSalaryFilter,
+  } = useSelector((state) => state.sampleJd);
   const bottomRef = useRef();
   const { filteredData } = useFilter(data);
   const handleScroll = InfiniteScrollUtils(
@@ -22,7 +33,15 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(fetchSampleJd());
-  }, [dispatch]);
+  }, [
+    dispatch,
+    experiencedFilter,
+    companyNameFilter,
+    jobLocationFilter,
+    jobRoleFilter,
+    jobTypeFilter,
+    minSalaryFilter,
+  ]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);

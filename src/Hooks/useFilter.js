@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 const useFilter = () => {
   const {
@@ -54,6 +55,8 @@ const useFilter = () => {
       (item) => item?.minJdSalary >= minSalaryFilter.value
     );
   }
+
+  useEffect(() => {});
   return { filteredData };
 };
 

@@ -49,6 +49,7 @@ const sampleJdSlice = createSlice({
     jobRoleFilter: null,
     jobTypeFilter: null,
     minSalaryFilter: null,
+    filteredData: [],
   },
 
   // *****Reducers to set various filters*****
@@ -82,10 +83,7 @@ const sampleJdSlice = createSlice({
       })
       .addCase(fetchSampleJd.fulfilled, (state, action) => {
         state.loading = false;
-
         state.data = [...action.payload, ...state.data];
-        // ? action.payload
-        // : [action.payload, state.data];
         state.error = null;
         state.page += 1;
       })
