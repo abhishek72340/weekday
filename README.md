@@ -1,4 +1,4 @@
-# React Redux Assignment/Weekday
+## Candidate Application Platform-React Redux
 
 This project is a React assignment built with Redux, Vite.js, and Material UI.
 
