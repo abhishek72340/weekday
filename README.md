@@ -1,4 +1,4 @@
-# Candidate Application Platform-React Redux
+# Candidate Application Platform
 
 This project is a React assignment built with Redux, Vite.js, and Material UI.
 
