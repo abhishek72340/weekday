@@ -1,4 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
+// *****Async thunk function to fetch sample JDs******
 export const fetchSampleJd = createAsyncThunk(
   "sampleJd/fetchSampleJd",
   async (page) => {
@@ -33,6 +35,7 @@ export const fetchSampleJd = createAsyncThunk(
   }
 );
 
+//*****Slice*****
 const sampleJdSlice = createSlice({
   name: "sampleJd",
   initialState: {
@@ -47,6 +50,8 @@ const sampleJdSlice = createSlice({
     jobTypeFilter: null,
     minSalaryFilter: null,
   },
+
+  // *****Reducers to set various filters*****
   reducers: {
     setExperiencedFilter: (state, action) => {
       state.experiencedFilter = action.payload;
@@ -67,6 +72,8 @@ const sampleJdSlice = createSlice({
       state.minSalaryFilter = action.payload;
     },
   },
+
+  // *****Extra reducers for handling async thunk actions*****
   extraReducers: (builder) => {
     builder
       .addCase(fetchSampleJd.pending, (state) => {
@@ -76,7 +83,9 @@ const sampleJdSlice = createSlice({
       .addCase(fetchSampleJd.fulfilled, (state, action) => {
         state.loading = false;
 
-        state.data = action.payload.length > 0 ? action.payload : state.data;
+        state.data = [...action.payload, ...state.data];
+        // ? action.payload
+        // : [action.payload, state.data];
         state.error = null;
         state.page += 1;
       })
@@ -86,6 +95,8 @@ const sampleJdSlice = createSlice({
       });
   },
 });
+
+// *****Export slice actions and reducer*****
 export const {
   setExperiencedFilter,
   setCompanyNameFilter,
