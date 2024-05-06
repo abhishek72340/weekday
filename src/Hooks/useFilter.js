@@ -54,7 +54,6 @@ const useFilter = () => {
       (item) => item?.minJdSalary >= minSalaryFilter.value
     );
   }
-  console.log("salaryFilter", minSalaryFilter);
   return { filteredData };
 };
 

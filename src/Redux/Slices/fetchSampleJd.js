@@ -75,10 +75,8 @@ const sampleJdSlice = createSlice({
       })
       .addCase(fetchSampleJd.fulfilled, (state, action) => {
         state.loading = false;
-        state.data =
-          action.payload.length > 0
-            ? action.payload
-            : [...action.payload, ...state.data];
+
+        state.data = action.payload.length > 0 ? action.payload : state.data;
         state.error = null;
         state.page += 1;
       })

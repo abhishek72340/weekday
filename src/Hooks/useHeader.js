@@ -27,8 +27,7 @@ const useHeader = () => {
     dispatch(setJobTypeFilter(selectedOption));
   };
   const handleSalaryChange = (selectedOption) => {
-    console.log("selectedOption", selectedOption);
-    dispatch(setMinSalaryFilter(selectedOption.value));
+    dispatch(setMinSalaryFilter(selectedOption));
   };
   return {
     handleExperiencedChange,

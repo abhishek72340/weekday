@@ -9,7 +9,7 @@ import { InfiniteScrollUtils } from "../../Utils/InfiniteScrollUtils";
 import { Grid, Typography, Stack } from "@mui/material";
 const Home = () => {
   const dispatch = useDispatch();
-  const { loading, error, data, page } = useSelector((state) => state.sampleJd);
+  const { loading, data, page, error } = useSelector((state) => state.sampleJd);
   const bottomRef = useRef();
   const { filteredData } = useFilter(data);
   const handleScroll = InfiniteScrollUtils(
@@ -28,25 +28,8 @@ const Home = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
-  if (error)
-    return (
-      <Stack>
-        <Header />
-        <Typography
-          variant="h5"
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100vh",
-            color: "red",
-          }}
-        >
-          Network Error
-        </Typography>
-      </Stack>
-    );
 
+  if (error) return;
   return (
     <>
       <Header />

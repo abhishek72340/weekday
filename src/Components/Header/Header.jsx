@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import { Grid, TextField, Tooltip } from "@mui/material";
 import useHeader from "./../../Hooks/useHeader";
 import { useSelector } from "react-redux";
@@ -29,6 +28,7 @@ export default function SelectLabels() {
     handleJobLocationChange,
     handleJobRoleChange,
     handleJobTypeChange,
+    handleSalaryChange,
   } = useHeader();
   const {
     experiencedFilter,
@@ -36,7 +36,6 @@ export default function SelectLabels() {
     jobRoleFilter,
     minSalaryFilter,
     jobTypeFilter,
-    handleSalaryChange,
     companyNameFilter,
   } = useSelector((state) => state.sampleJd);
 
